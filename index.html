@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Практика 4</title>
+    <script src="js/main.js"></script>
+</html>
+<body>
+    <script>load()</script>
+
+    <header>
+        <select id="selectCsvMethod">
+            <option value="split">Split</option>
+            <option value="regex">Regex</option>
+        </select>
+    </header>
+
+    
+    <main class="leftContent">
+        <div class="filter" id="regionFilter">
+            <label for="regionInput">Поиск по региону</label>
+            <input type="search" id="regionInput" placeholder="Название региона">
+        </div>
+
+        <div class="filter" id="districtFilter">
+            <label for="districtInput">Поиск по району</label>
+            <input type="search" id="districtInput" placeholder="Название района">
+        </div>
+        
+        <div class="tableWrapper">
+            <table id="areaTable"></table>
+        </div>
+    </main>
+
+
+    <main class="rightContent">
+        <div class="filter" id="localityFilter">
+            <label for="localityInput">Поиск по населенному пункту</label>
+            <input type="search" id="localityInput" placeholder="Название населенного пункта">
+        </div>
+
+        <div class="tableWrapper">
+            <table id="localityTable"></table>
+        </div>
+        
+    </main>
+
+</body>
