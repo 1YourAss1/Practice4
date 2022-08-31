@@ -1,6 +1,6 @@
 'use strict';
 
-let url = 'http://localhost:3000/small.csv';
+let url = 'data/oktmo.csv';
 let area = [];
 let locality = []; let displayLocality = [];
 
@@ -147,15 +147,21 @@ function load() {
 }
 
 function csvToTerritorySplit(text) {
-    return text.split('\n').map(line => {
+    let result = [];
+    let lines = text.split('\n');
+    for (let line of lines) {
+        if (!line) continue;
+
         line = line.split(";");
 
         let codes = [line[0].slice(1, -1), line[1].slice(1, -1), line[2].slice(1, -1), line[3].slice(1, -1)];
         let level = line[5].slice(1, -1);
         let name = line[6].slice(1, -1);
 
-        return new Territory(codes, level, name);
-    });
+        result.push(new Territory(codes, level, name));
+    }
+
+    return result;
 }
 
 function csvToTerritoryRegex(text) {
@@ -175,22 +181,17 @@ function listToTable(list, id) {
         let tr = document.createElement('tr');
         let td = document.createElement('td');
 
-        for(let i = 0; i < locality.codes.length; i++) {
+        let i = 1;
+        locality.codes.forEach(code => {
             td = document.createElement('td');
-            td.textContent = locality.codes[i];
-            td.classList.add(`code${i+1}`);
+            td.textContent = code;
+            td.classList.add(`code${i++}`);
             tr.append(td);
-        }
-
-        // locality.codes.forEach(code => {
-        //     let td = document.createElement('td');
-        //     td.textContent = code;
-        //     tr.append(td);
-        // });
+        });
 
         td = document.createElement('td');
         td.textContent = locality.level;
-        td.classList.add('nevel');
+        td.classList.add('level');
         tr.append(td);
 
         td = document.createElement('td');
